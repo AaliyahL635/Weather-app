@@ -3,17 +3,33 @@
   <head>
     <title>Parcel Sandbox</title>
     <meta charset="UTF-8" />
-    <link href="src/styles.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <link href="src/styles.css" />
   </head>
-<body>
+  <body>
+  <div>
   <div class="container">
       
       <div class="weather-app">
+    
+          <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch" id="tempSwitch">
+              <label class="form-check-label" for="flexSwitchCheckDefault">Fahrenheit</label>
+            </div>
+          
+      </br>
           <form class="search-form" id="search-form">
             <div class="row">
               <div class="col-6">
@@ -32,27 +48,34 @@
           </form>
     
         <br/>
-  <h2 id= city>
-      
-    Milan, Metropolitan City of Milan
-      
-  </h2>
-<h3>
-  Cloudy 
-</h3>
-<p id="currentDate">
-  Date
-</p>
-
-<h1>
-<div class="row row-cols-2">
-          <div class="col" id="tempElement"> 24 </div>
-          <div class="col">Precipitation:3%</div>
-          <div class="col"></div>
-          <div class="col">Wind:3 km/h</div>
-        </div>
-      </div>
-    </h1>
+  
+        <div class="row">
+            <div class="col-6">
+                <h1 id= city>Milan, Metropolitan City of Milan</h1>
+                <p id="currentDate">
+                    Date
+                  </p>
+                  <h5 id="currentFeel"></h5>
+                  <ul>
+                  <li class="col1">Humidity: <span id="humidity"><strong>76%</strong></span>, <span class="col1">Wind: </span> <span id="wind"><strong>6.17km/h</strong></span></li>
+                </ul>
+              
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-8">
+                  <span>
+                  <div class="col2">
+                    <div class="clearfix weather-temperature">
+                      <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png" 
+                      alt="Clear" 
+                      id="icon" 
+                      class="float-right"/><span id="tempElement">14</span>
+                    <span class="unit"></span>
+                  </span>
+                  </div>
+                    </div>
+                    </div>
+                  
+    
     <br/>
     <div class="row row-cols-1 row-cols-md-6 g-4">
       <div class="col">
@@ -103,11 +126,6 @@
        
       </div>
     </div>
-    
-    <a href="https://github.com/AaliyahL635/Weather-app">Open-source Code</a>
-    <span> by Aaliyah</span>
-
-
 
     <script src="src/index.js"></script>
   </body>

@@ -1,15 +1,54 @@
 h1,
 h2,
 h3 {
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: Cerebri-Sans, Helvetica, Arial, sans-serif;
 }
 h1 {
   color: grey;
-  font-size: 35px;
+  font-size: 28px;
+  margin-bottom: 0px;
+}
+h2 {
+  color: black;
+  font-size: 45px;
+  font-weight: bolder;
+  margin-bottom: 0px;
+}
+h5 {
+  font-family: Cerebri-Sans, Helvetica, Arial, sans-serif;
+  text-transform: capitalize;
+  font-size: 20px;
 }
 p {
-  font-family: "Roboto Condensed", sans-serif;
-  font-size: 32px;
+  font-family: Cerebri-Sans, Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  margin-bottom: 0px;
+}
+.col1 {
+  font-size: 25px;
+  margin-top: 0px;
+  font-weight: lighter;
+  color: #116df6;
+}
+.col2 {
+  color: black;
+  font-size: 100px;
+  margin-block-end: 20px;
+}
+.units {
+  color: black;
+  font-size: 100px;
+  margin-block-end: 20px;
+}
+.container {
+  display: block;
+  max-width: 1000px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 30px 50px rgb(65 50 100 / 8%);
+  color: #878787;
+  padding: 40px;
+  box-sizing: border-box;
 }
 .col-auto {
   position: relative;
@@ -33,4 +72,10 @@ p {
 }
 .card {
   margin-left: 15px;
+}
+img {
+  margin-right: 5px;
+  height: 64px;
+  width: 64px;
+  size: 30px;
 }
