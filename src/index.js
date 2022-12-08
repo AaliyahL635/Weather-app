@@ -37,10 +37,26 @@ function formatDate(timestamp) {
 }
 
 function showTemperature(response) {
-  document.querySelector("#city").innerHTML = response.data.name;
+  console.log(response);
+  let iconElement = document.querySelector("#icon");
+  let celsiusTemperature = response.data.temperature.current;
+  document.querySelector("#city").innerHTML = response.data.city;
   document.querySelector("#tempElement").innerHTML = Math.round(
-    response.data.main.temp
+    response.data.temperature.current
   );
+  document.querySelector("#currentFeel").innerHTML =
+    response.data.condition.description;
+  document.querySelector("#humidity").innerHTML =
+    response.data.temperature.humidity;
+  document.querySelector("#wind").innerHTML = response.data.wind.speed;
+  document.querySelector("#currentDate").innerHTML = formatDate(
+    response.data.time * 1000
+  );
+  iconElement.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+  );
+  iconElement.setAttribute("alt", response.data.condition.description);
 }
 
 function searchCity(city) {
@@ -54,6 +70,27 @@ function handleSubmit(event) {
   let city = document.querySelector("#city-input").value;
   searchCity(city);
 }
+
+function displayFahrenheitTemp(event) {
+  event.preventDefault();
+  let fahrenheitConversion = (celsiusTemperature * 9) / 5 + 32;
+  let temperatureElement = document.querySelector("#tempElement");
+  temperatureElement.innerHTML = Math.round(fahrenheitConversion);
+}
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#tempElement");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+let celsiusTemperature = null;
+
+let celsiusLink = document.querySelector("#tempElement");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+let fahrenheitConversion = document.querySelector("#tempSwitch");
+fahrenheitConversion.addEventListener("change", displayFahrenheitTemp);
 
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
