@@ -27,28 +27,14 @@ let weather = {
 };
 
 // write your code here
-let city = prompt("Enter a city");
-
-if (weather[city] !== undefined) {
-  city = city.toLowerCase();
-  city = city.trim();
-  let humidity = weather[city].humidity;
-  let celsius = Math.round(weather[city].temp);
-
-  alert(
-    `It is currently ${celsius} °C, in ${city}, with a humidity of ${humidity}`
-  );
-} else {
-  alert("Sorry, we don't know the weather for this city, try going to Google.");
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+  let day = days[date.getDay()];
+  return `${day} ${hours}:${minutes}`;
 }
-
-let now = new Date();
-let days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
-let day = days[now.getDay()];
-let hours = now.getHours();
-
-let paragraph = document.querySelector("#currentDate");
-paragraph.innerHTML = `${day} ${hours}`;
 
 function showTemperature(response) {
   document.querySelector("#city").innerHTML = response.data.name;
