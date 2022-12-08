@@ -39,7 +39,7 @@ function formatDate(timestamp) {
 function showTemperature(response) {
   console.log(response);
   let iconElement = document.querySelector("#icon");
-  let celsiusTemperature = response.data.temperature.current;
+  celsiusTemperature = response.data.temperature.current;
   document.querySelector("#city").innerHTML = response.data.city;
   document.querySelector("#tempElement").innerHTML = Math.round(
     response.data.temperature.current
@@ -60,8 +60,8 @@ function showTemperature(response) {
 }
 
 function searchCity(city) {
-  let apiKey = "733f7b9a71c3079758e35bf2e14927b7";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  let apiKey = "e060f7b7t14cca4123801e32a3d6adob";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showTemperature);
 }
 
@@ -73,9 +73,15 @@ function handleSubmit(event) {
 
 function displayFahrenheitTemp(event) {
   event.preventDefault();
-  let fahrenheitConversion = (celsiusTemperature * 9) / 5 + 32;
   let temperatureElement = document.querySelector("#tempElement");
-  temperatureElement.innerHTML = Math.round(fahrenheitConversion);
+  unitSwitchEnabled = !unitSwitchEnabled;
+
+  if (unitSwitchEnabled) {
+    let fahrenheitConversion = (celsiusTemperature * 9) / 5 + 32;
+    temperatureElement.innerHTML = Math.round(fahrenheitConversion);
+  } else {
+    temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  }
 }
 
 function displayCelsiusTemperature(event) {
@@ -85,6 +91,7 @@ function displayCelsiusTemperature(event) {
 }
 
 let celsiusTemperature = null;
+let unitSwitchEnabled = false;
 
 let celsiusLink = document.querySelector("#tempElement");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
