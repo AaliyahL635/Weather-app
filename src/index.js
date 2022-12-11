@@ -40,55 +40,21 @@ function displayForecast() {
   let forecastElement = document.querySelector("#forecast");
   let days = ["Thur", "Fri", "Sat", "Sun", "Mon"];
   let forecastHTML = `<div class="WeatherForecast row">`;
-  
+
   days.forEach(function (day) {
-  forecastHTML =
-    forecastHTML +
-    `<div class="col">
+    forecastHTML =
+      forecastHTML +
+      `<div class="col">
 <div class="WeatherForecastPreview">
 <div class="forecast-time">${day}</div><canvas width="38" height="38"></canvas>
 <div class="forecast-temperature"><span class="forecast-temperature-max">11°</span><span class="forecast-temperature-min">8°</span>
 </div>
 </div>
-</div>
-<div class="col">
-  <div class="WeatherForecastPreview">
-    <div class="forecast-time">${day}</div>
-    <canvas width="38" height="38"></canvas>
-    <div class="forecast-temperature"><span class="forecast-temperature-max">10°</span><span class="forecast-temperature-min">6°</span>
-    </div>
-  </div>
-</div>
-<div class="col">
-  <div class="WeatherForecastPreview">
-    <div class="forecast-time">${day}</div>
-    <canvas width="38" height="38"></canvas>
-    <div class="forecast-temperature"><span class="forecast-temperature-max">10°</span><span class="forecast-temperature-min">7°</span>
-    </div>
-  </div>
-</div>
-<div class="col">
-  <div class="WeatherForecastPreview">
-    <div class="forecast-time">${day}</div>
-    <canvas width="38" height="38"></canvas>
-    <div class="forecast-temperature"><span class="forecast-temperature-max">10°</span><span class="forecast-temperature-min">7°</span>
-    </div>
-  </div>
-</div>
-<div class="col">
-  <div class="WeatherForecastPreview">
-    <div class="forecast-time">${day}</div>
-    <canvas width="38" height="38"></canvas>
-<div class="forecast-temperature"><span class="forecast-temperature-max">11°</span><span class="forecast-temperature-min">7°</span>
-</div>
-</div>
-</div>`
-  };
+</div>`;
+  });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
-
-
 
 function showTemperature(response) {
   console.log(response);
