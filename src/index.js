@@ -36,6 +36,54 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="WeatherForecast row">`;
+  forecastHTML =
+    forecastHTML +
+    `<div class="col">
+<div class="WeatherForecastPreview">
+<div class="forecast-time">Sun</div><canvas width="38" height="38"></canvas>
+<div class="forecast-temperature"><span class="forecast-temperature-max">11°</span><span class="forecast-temperature-min">8°</span>
+</div>
+</div>
+</div>
+<div class="col">
+  <div class="WeatherForecastPreview">
+    <div class="forecast-time">Mon</div>
+    <canvas width="38" height="38"></canvas>
+    <div class="forecast-temperature"><span class="forecast-temperature-max">10°</span><span class="forecast-temperature-min">6°</span>
+    </div>
+  </div>
+</div>
+<div class="col">
+  <div class="WeatherForecastPreview">
+    <div class="forecast-time">Tue</div>
+    <canvas width="38" height="38"></canvas>
+    <div class="forecast-temperature"><span class="forecast-temperature-max">10°</span><span class="forecast-temperature-min">7°</span>
+    </div>
+  </div>
+</div>
+<div class="col">
+  <div class="WeatherForecastPreview">
+    <div class="forecast-time">Wed</div>
+    <canvas width="38" height="38"></canvas>
+    <div class="forecast-temperature"><span class="forecast-temperature-max">10°</span><span class="forecast-temperature-min">7°</span>
+    </div>
+  </div>
+</div>
+<div class="col">
+  <div class="WeatherForecastPreview">
+    <div class="forecast-time">Thu</div>
+    <canvas width="38" height="38"></canvas>
+<div class="forecast-temperature"><span class="forecast-temperature-max">11°</span><span class="forecast-temperature-min">7°</span>
+</div>
+</div>
+</div>`;
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function showTemperature(response) {
   console.log(response);
   let iconElement = document.querySelector("#icon");
@@ -102,4 +150,5 @@ fahrenheitConversion.addEventListener("change", displayFahrenheitTemp);
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
 
+displayForecast();
 searchCity("Milan");
