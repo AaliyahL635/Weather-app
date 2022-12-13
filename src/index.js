@@ -36,7 +36,7 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
-function formatDay(date) {
+function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -54,17 +54,17 @@ function displayForecast(response) {
         forecastHTML +
         `<div class="col">
 <div class="WeatherForecastPreview">
-<div class="forecast-time">${formatDay(forecastDay.dt)}</div><img
+<div class="forecast-time">${formatDay(forecastDay.time)}</div><img
           src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
-            response.data.condition.icon
+            forecastDay.condition.icon
           }.png"
           alt="forecast"
-          width="42"
+          
         />
 <div class="forecast-temperature"><span class="forecast-temperature-max">${Math.round(
-          forecastDay.temp.max
+          forecastDay.temperature.maximum
         )}°</span><span class="forecast-temperature-min">${Math.round(
-          forecastDay.temp.min
+          forecastDay.temperature.minimum
         )}°</span>
 </div>
 </div>
@@ -77,7 +77,7 @@ function displayForecast(response) {
 }
 
 function getForecast(coordinates) {
-  let apiKey = e060f7b7t14cca4123801e32a3d6adob;
+  let apiKey = "e060f7b7t14cca4123801e32a3d6adob";
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
 }
@@ -149,5 +149,4 @@ fahrenheitConversion.addEventListener("change", displayFahrenheitTemp);
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
 
-displayForecast();
 searchCity("Milan");
