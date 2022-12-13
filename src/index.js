@@ -46,6 +46,7 @@ function formatDay(timestamp) {
 
 function displayForecast(response) {
   let forecast = response.data.daily;
+  celsiusTemperature = response.data.temperature.day;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="WeatherForecast row">`;
   forecast.forEach(function (forecastDay, index) {
@@ -61,7 +62,7 @@ function displayForecast(response) {
           alt="forecast"
           
         />
-<div class="forecast-temperature"><span class="forecast-temperature-max">${Math.round(
+<div class="forecast-temperature" id=conversion><span class="forecast-temperature-max">${Math.round(
           forecastDay.temperature.maximum
         )}° / </span><span class="forecast-temperature-min">${Math.round(
           forecastDay.temperature.minimum
@@ -137,10 +138,23 @@ function displayCelsiusTemperature(event) {
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 
+function displayForecastTemperature(event) {
+  event.preventDefault();
+  let forecastTemp = document.querySelector("#conversion");
+  unitSwitchEnabled = !unitSwitchEnabled;
+  if (unitSwitchEnabled) {
+    let forecastConversion = (celsiusTemperature * 9) / 5 + 32;
+    forecastTemp.innerHTML = Math.round(forecastConversion);
+  } else {
+    forecastTemp.innerHTML = Math.round(celsiusTemperature);
+  }
+}
+
 let celsiusTemperature = null;
 let unitSwitchEnabled = false;
 
-let forecastConversion = document.querySelector("#");
+let forecastConversion = document.querySelector("#conversion");
+forecastConversion.addEventListener("click", displayForecastTemperature);
 
 let celsiusLink = document.querySelector("#tempElement");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
