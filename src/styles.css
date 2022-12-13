@@ -5,7 +5,7 @@ h3 {
 }
 h1 {
   color: black;
-  font-size: 40px;
+  font-size: 58px;
   margin-bottom: 0px;
 }
 h2 {
@@ -18,6 +18,7 @@ h5 {
   font-family: Cerebri-Sans, Helvetica, Arial, sans-serif;
   text-transform: capitalize;
   font-size: 20px;
+  margin-bottom: 0px;
 }
 p {
   font-family: Cerebri-Sans, Helvetica, Arial, sans-serif;
@@ -30,13 +31,21 @@ ul {
   font-size: 20px;
   margin-left: 0px;
   padding-left: 0px;
-}
-.col1 {
-  font-size: 25px;
-  margin-top: 0px;
-  font-weight: lighter;
+  font-family: Cerebri-Sans, Helvetica, Arial, sans-serif;
+  margin-bottom: 0px;
+  font-weight: light;
   color: #116df6;
 }
+#humidity {
+  font-weight: bolder;
+}
+#wind {
+  font-weight: bolder;
+}
+#tempElement {
+  font-size: 105px;
+}
+
 .col2 {
   color: black;
   font-size: 100px;
@@ -56,6 +65,9 @@ ul {
   color: #878787;
   padding: 40px;
   box-sizing: border-box;
+  margin-left: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .col-auto {
   position: relative;
@@ -73,10 +85,7 @@ ul {
   color: grey;
   font-size: 20px;
 }
-.container {
-  margin-left: 15px;
-  margin-top: 20px;
-}
+
 .card {
   margin-left: 15px;
 }
@@ -89,5 +98,22 @@ img {
 .WeatherForecast {
   padding-bottom: 40px;
   margin-top: 40px;
-  margin-bottom: 40px;
+  margin-bottom: 0px;
+  text-align: center;
+  margin-top: 20px;
+}
+.forecast-time {
+  font-family: Cerebri-Sans, Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  color: rgb(180, 177, 177);
+}
+.forecast-temperature {
+  font-family: Cerebri-Sans, Helvetica, Arial, sans-serif;
+  font-size: 17px;
+}
+.forecast-temperature-max {
+  color: #116df6;
+}
+.forecast-temperature-min {
+  color: #82abe9;
 }

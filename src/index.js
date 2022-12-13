@@ -63,7 +63,7 @@ function displayForecast(response) {
         />
 <div class="forecast-temperature"><span class="forecast-temperature-max">${Math.round(
           forecastDay.temperature.maximum
-        )}°</span><span class="forecast-temperature-min">${Math.round(
+        )}° / </span><span class="forecast-temperature-min">${Math.round(
           forecastDay.temperature.minimum
         )}°</span>
 </div>
@@ -139,6 +139,8 @@ function displayCelsiusTemperature(event) {
 
 let celsiusTemperature = null;
 let unitSwitchEnabled = false;
+
+let forecastConversion = document.querySelector("#");
 
 let celsiusLink = document.querySelector("#tempElement");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
