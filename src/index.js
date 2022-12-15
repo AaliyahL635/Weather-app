@@ -46,11 +46,10 @@ function formatDay(timestamp) {
 
 function displayForecast(response) {
   let forecast = response.data.daily;
-  celsiusTemperature = response.data.temperature.day;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="WeatherForecast row">`;
   forecast.forEach(function (forecastDay, index) {
-    if (index < 6) {
+    if (index < 5) {
       forecastHTML =
         forecastHTML +
         `<div class="col">
@@ -107,6 +106,12 @@ function showTemperature(response) {
   getForecast(response.data.coordinates);
 }
 
+function searchLocation(position) {
+  let apiKey = "e060f7b7t14cca4123801e32a3d6adob";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showTemperature);
+}
+
 function searchCity(city) {
   let apiKey = "e060f7b7t14cca4123801e32a3d6adob";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
@@ -117,6 +122,11 @@ function handleSubmit(event) {
   event.preventDefault();
   let city = document.querySelector("#city-input").value;
   searchCity(city);
+}
+
+function getCurrentLocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
 function displayFahrenheitTemp(event) {
@@ -138,23 +148,8 @@ function displayCelsiusTemperature(event) {
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 
-function displayForecastTemperature(event) {
-  event.preventDefault();
-  let forecastTemp = document.querySelector("#conversion");
-  unitSwitchEnabled = !unitSwitchEnabled;
-  if (unitSwitchEnabled) {
-    let forecastConversion = (celsiusTemperature * 9) / 5 + 32;
-    forecastTemp.innerHTML = Math.round(forecastConversion);
-  } else {
-    forecastTemp.innerHTML = Math.round(celsiusTemperature);
-  }
-}
-
 let celsiusTemperature = null;
 let unitSwitchEnabled = false;
-
-let forecastConversion = document.querySelector("#conversion");
-forecastConversion.addEventListener("click", displayForecastTemperature);
 
 let celsiusLink = document.querySelector("#tempElement");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
@@ -164,5 +159,8 @@ fahrenheitConversion.addEventListener("change", displayFahrenheitTemp);
 
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
+
+let currentLocationButton = document.querySelector("#current-location-button");
+currentLocationButton.addEventListener("click", getCurrentLocation);
 
 searchCity("Milan");
