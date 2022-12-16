@@ -121,6 +121,7 @@ function searchCity(city) {
 function handleSubmit(event) {
   event.preventDefault();
   let city = document.querySelector("#city-input").value;
+  unitSwitchEnabled = stay;
   searchCity(city);
 }
 
