@@ -121,7 +121,6 @@ function searchCity(city) {
 function handleSubmit(event) {
   event.preventDefault();
   let city = document.querySelector("#city-input").value;
-  unitSwitchEnabled = stay;
   searchCity(city);
 }
 
@@ -133,6 +132,11 @@ function getCurrentLocation(event) {
 function displayFahrenheitTemp(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#tempElement");
+
+  let onpageLoad = document.querySelector("#tempSwitch")
+if (onpageLoad!= null)
+let unitSwitchEnabled = true;
+
   unitSwitchEnabled = !unitSwitchEnabled;
 
   if (unitSwitchEnabled) {
