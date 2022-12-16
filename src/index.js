@@ -78,14 +78,14 @@ function displayForecast(response) {
 
 function getForecast(coordinates) {
   let apiKey = "e060f7b7t14cca4123801e32a3d6adob";
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=${globalUnit}`;
   axios.get(apiUrl).then(displayForecast);
 }
 
 function showTemperature(response) {
   console.log(response);
   let iconElement = document.querySelector("#icon");
-  celsiusTemperature = response.data.temperature.current;
+  baseTemperature = response.data.temperature.current;
   document.querySelector("#city").innerHTML = response.data.city;
   document.querySelector("#tempElement").innerHTML = Math.round(
     response.data.temperature.current
@@ -108,13 +108,13 @@ function showTemperature(response) {
 
 function searchLocation(position) {
   let apiKey = "e060f7b7t14cca4123801e32a3d6adob";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=${globalUnit}`;
   axios.get(apiUrl).then(showTemperature);
 }
 
 function searchCity(city) {
   let apiKey = "e060f7b7t14cca4123801e32a3d6adob";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${globalUnit}`;
   axios.get(apiUrl).then(showTemperature);
 }
 
@@ -129,38 +129,38 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
-function displayFahrenheitTemp(event) {
+function unitConvertTemp(event) {
   event.preventDefault();
+  let currentSwitchPosition = document.querySelector("#tempSwitch").value;
   let temperatureElement = document.querySelector("#tempElement");
-
-  let onpageLoad = document.querySelector("#tempSwitch")
-if (onpageLoad!= null)
-let unitSwitchEnabled = true;
-
-  unitSwitchEnabled = !unitSwitchEnabled;
-
-  if (unitSwitchEnabled) {
-    let fahrenheitConversion = (celsiusTemperature * 9) / 5 + 32;
-    temperatureElement.innerHTML = Math.round(fahrenheitConversion);
+  if (currentSwitchPosition === "on") {
+    if (globalUnit === "metric") {
+      let fahrenheitConversion = (baseTemperature * 9) / 5 + 32;
+      temperatureElement.innerHTML = Math.round(fahrenheitConversion);
+      baseTemperature = fahrenheitConversion;
+    } else {
+      temperatureElement.innerHTML = Math.round(baseTemperature);
+    }
+    globalUnit = "imperial";
+    document.querySelector("#tempSwitch").value = "off";
   } else {
-    temperatureElement.innerHTML = Math.round(celsiusTemperature);
+    if (globalUnit === "imperial") {
+      let fahrenheitConversion = ((baseTemperature - 32) * 5) / 9;
+      temperatureElement.innerHTML = Math.round(fahrenheitConversion);
+      baseTemperature = fahrenheitConversion;
+    } else {
+      temperatureElement.innerHTML = Math.round(baseTemperature);
+    }
+    globalUnit = "metric";
+    document.querySelector("#tempSwitch").value = "on";
   }
 }
 
-function displayCelsiusTemperature(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#tempElement");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
-}
-
-let celsiusTemperature = null;
-let unitSwitchEnabled = false;
-
-let celsiusLink = document.querySelector("#tempElement");
-celsiusLink.addEventListener("click", displayCelsiusTemperature);
+let baseTemperature = null;
+let globalUnit = "metric";
 
 let fahrenheitConversion = document.querySelector("#tempSwitch");
-fahrenheitConversion.addEventListener("change", displayFahrenheitTemp);
+fahrenheitConversion.addEventListener("change", unitConvertTemp);
 
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
