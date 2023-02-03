@@ -108,7 +108,7 @@ function showTemperature(response) {
 
 function searchLocation(position) {
   let apiKey = "e060f7b7t14cca4123801e32a3d6adob";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=${globalUnit}`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?lat=${position.coords.latitude}&lon=${position.coords.longitude}&key=${apiKey}&units=${globalUnit}`;
   axios.get(apiUrl).then(showTemperature);
 }
 
